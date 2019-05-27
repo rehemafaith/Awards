@@ -31,15 +31,15 @@
         <div class="mask rgba-indigo-slight flex-center">
           <div class="container">
             <div class="white-text text-center wow fadeInUp">
-                <button class="button">Submit Your Project</button>
+                <a href="{%url 'new_project'%}"><button class="button">Submit Your Project</button></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
   </header>
   <!--Main Navigation-->
+ 
 
   <style>
       .button {
@@ -62,5 +62,6 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
       }
+      
       </style>
 {% endblock %}

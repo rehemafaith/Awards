@@ -7,34 +7,35 @@ class Profile(models.Model):
    Holds user's profile data.
    '''
 
-   user = models.OneToOneField(User, on_delete=models.CASCADE)
-   avatar = models.ImageField(upload_to='avatars/',null=True,default='default.jpg')
-   bio = models.TextField(max_length=140,null=True)
+   name = models.CharField(max_length = 250)
+   profile_photo = models.ImageField(upload_to = "images/")
+   bio = models.TextField()
+
+   def save_profile(self):
+    self.save()
+  
+   def delete(self):
+    Profile.objects.get(id = self.id).delete()
+  
+   def update(self,field,val):
+    Profile.objects.get(id=self.id).update(field=val)
+    
 
    def __str__(self):
-      return self.user.username
-
-class Techused(models.Model):
-   '''
-   Holds data for the programming languages used.
-   '''
-
-   techused = models.CharField(max_length=50)
-
-   def __str__(self):
-      return self.language
+      return self.name
 
 class Project(models.Model):
    '''
    Model to hold user's project data.
    '''
 
-   author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+   author = models.ForeignKey(User, on_delete=models.CASCADE)
    name = models.CharField(max_length=70)
    description = models.TextField(max_length=140)
    img = models.ImageField(upload_to='projects/')
    link = models.CharField(max_length=140)
-   techused = models.ManyToManyField(Techused)
+
+
    
    def __str__(self):
       return self.name

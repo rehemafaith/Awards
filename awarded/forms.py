@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from .models import Profile,Project,Rating,Techused
+from .models import Profile,Project,Rating
 
 
 
@@ -19,4 +19,4 @@ class ProjectForm(forms.ModelForm):
 
    class Meta:
       model = Project
-      fields = ['name','img','description','link','language']
+      fields = ['name','img','description','link']

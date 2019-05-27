@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+   
+     
+<div class="row">
+<div class="card">
+
+
+   <div class="auth-form">
+      <form action="" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+         {{ form.as_p }}
+         
+         <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Send</button>
+
+      </form>
+   </div>
+  </div>
+</div>
+</div>
+</div>
+<style>
+.card{
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%load bootstrap4%}
+
+ {% block content%}
+ {% include 'index.html'%}
+ <div class="container">
+   <div class="row">
+      {% for img in project%}
+     <div class="col-md-6 col-lg-6">
+      <div class="card">
+       
+        <img src="{{img.img.url}}" alt="">
+        <p>{{img.description}}</p>
+       
+      </div>
+     </div>
+     {%endfor %}
+
+   </div>
+
+ </div>
+{% endblock %}
