@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
-
+from .permissions import IsAdminOrReadOnly
 
 
 @login_required(login_url='/accounts/login/')
@@ -69,19 +69,29 @@ class ProjectList(APIView):
       serializers = ProjectSerializer(all_proj,many=True)
 
       return Response(serializers.data)
-
-   def post(self.request,format=None):
+      permission_classes = (IsAdminOrReadOnly,)
+   def post(self,request,format=None):
       serializers = ProjectSerializer(data=request.data)
       if serializers.is_valid():
          serializers.save()
          return Response(serializers.data, status=status.HTTP_201_CREATED)
          return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
          
-
+         permission_classes = (IsAdminOrReadOnly,)
       
 class ProfileList(APIView):
    def get(self,request,format=None):
       all_prof = Profile.objects.all()
       seerializers = ProfileSerializer(all_prof,many=True)
       return Response(serializers.data)
+
+   def post(self,request,format=None):
+      serializers = ProfileSerializer(data=request.data)
+      if serializers.is_valid():
+         serializers.save()
+         return Response(serializers.data, status=status.HTTP_201_CREATED)
+         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+         
+         permission_classes = (IsAdminOrReadOnly,)
+      
 

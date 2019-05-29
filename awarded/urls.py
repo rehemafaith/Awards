@@ -7,10 +7,10 @@ urlpatterns=[
     url('^$',views.home,name = 'home'),
     url('^new_project',views.new_project,name='new_project'),
     url('^profile/$',views.profile,name='profile'),
-    url('^project/$',views.full_project,name='project')
-    url(r'^api/project/$',views.ProjectList.as_view())
-    url(r'^api/profile/$',views.ProfileList.as_view())
-    
+    url('^project/$',views.full_project,name='project'),
+    url(r'^api/project/$',views.ProjectList.as_view()),
+    url(r'^api/profile/$',views.ProfileList.as_view()),
+
 
 ]
 

@@ -11,6 +11,7 @@ class Profile(models.Model):
    name = models.CharField(max_length = 250)
    profile_photo = models.ImageField(upload_to = "images/")
    bio = models.TextField()
+   
 
    def save_profile(self):
     self.save()
@@ -35,8 +36,7 @@ class Project(models.Model):
    description = models.TextField(max_length=140)
    img = models.ImageField(upload_to='projects/')
    link = models.CharField(max_length=140)
-   
-
+  
 
    
    def __str__(self):
