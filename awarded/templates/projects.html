@@ -1,31 +1,94 @@
 {% extends 'base.html' %}
-{%load bootstrap4%}
+{% block content %}
+{% include 'navbar.html'%}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<body>
 
- {% block content%}
- {% include 'navbar.html'%}
-<!-- Card -->
-<div class="row">
+<div class="container" >
+	<div class="row">
+   
+		<div class="col-md-12 col-lg-6">
+
+      <!-- Card -->
+    <div class="card">
+
+    <!-- Card image -->
+    <img class="card-img-top" src="{{project.img.url}}" alt="Card image cap">
   
-
-{% for img in project%}
-<div class="col-lg-4 col-md-12 mb-4">
-<div class="card card-image" style="background-image: url('https://images.pexels.com/photos/908295/pexels-photo-908295.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');">
-
-  <!-- Content -->
-  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-    <div>
-      <h5 class="pink-text"><i ></i> {{img.author}}</h5>
-      <h3 class="card-title pt-2"><strong>{{img.name}}</strong></h3>
-      <p>{{img.description}}</p>
+    <!-- Card content -->
+    <div class="card-body">
+  
+      <!-- Title -->
+      <h2 class="card-title"><a>{{project.name}}</a></h2>
+      <!-- Text -->
+      <h4>By:{{project.author}}</h4>
+      <p class="card-text">{{project.description}}</p>
+      <!-- Button -->
+     
       
-      <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-    </div>
+ <br>
+  <form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+          
+  <span style="border-radius: 20px;" class="btn btn-primary btn-lg" type=><i class="glyphicon glyphicon-ok"></i>Rate It!</span>
+ 
+</form>  
+  <h4> Total Votes: {{all|length}} </h4>
+<div class="list-group">
+  <ul class="list-group">
+  {%if all%}
+  <table id='comm' class="table">
+  <th>Voters</th>
+  <th>Rating</th>
+  {%for you in all%}<tr>
+  <td> <img src="{{you.user.profile.profile_photo.url}}" alt="" width='30px' height="30px">  {{you.user}}</td>
+  <td>
+  <div class="design">
+    <a href="" class="scores">{{you.design}}.0</a>
+    <a href="">{{you.usability}}.0</a>
+    <a class='b' href="">{{you.content}}.0</a>
   </div>
+  </td>
+  {%endfor%}
+  </table>
+  {%else%}
+    <li class="list-group-item alert alert-info">No votes Available</li>
+  {%endif%}
+  </ul>
+  </div>
+  </div>
+    
+ </div>
+ 
+  
+  
+  
+  
+    </div>
+    
+      
+  </div>
+</div>
+</div>
 
-</div>
-</div>
-{% endfor %}
+	
 
-</div>
-<!-- Card -->
+
+
+</body>
+<style>
+  body{
+		background: linear-gradient(90deg, #e8e8e8 50%,#f5edeb 50%);
+	}
+  .card{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #B28BBC;
+  }
+</style>
 {% endblock %}

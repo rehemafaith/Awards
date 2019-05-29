@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 
 
 # Create your models here.
@@ -43,10 +44,12 @@ class Project(models.Model):
       return self.name
 class Review(models.Model):
    rev = models.CharField(max_length = 100,blank = True)
-   design = models.IntegerField(blank = True)
-   usability = models.IntegerField(blank=True)
-   content = models.IntegerField(blank=True)
-   rev_by = models.ForeignKey(User,on_delete=models.CASCADE)
+   design = models.PositiveIntegerField(default = 0,validators= [MaxValueValidator(10)])
+   usability = models.PositiveIntegerField(default = 0,validators= [MaxValueValidator(10)])
+   content = models.PositiveIntegerField(default = 0,validators= [MaxValueValidator(10)])
+   user = models.ForeignKey(User,on_delete=models.CASCADE)
+   project = models.IntegerField(default=0)
+   
 
 def save_review(self):
    self.save()
@@ -59,5 +62,8 @@ def update_review(self,new_review):
    rev.review= new_review
    rev.save()
 
-
+class Comments(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    comments = models.TextField(max_length=400)
+    pro_id = models.IntegerField(default=0) 
 
