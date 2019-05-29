@@ -3,13 +3,16 @@
 
 {% block content %}
 
-   
+{% include 'navbar.html'%}
      
 <div class="row">
 <div class="card">
 
 
    <div class="auth-form">
+      <h5 class="card-header info-color white-text text-center py-4">
+         <strong>Submit Project</strong>
+      </h5>
       <form action="" method="POST" enctype="multipart/form-data">
          {% csrf_token %}
          {{ form.as_p }}

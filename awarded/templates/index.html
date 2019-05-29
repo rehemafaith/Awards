@@ -2,24 +2,20 @@
 {% load bootstrap4 %}
 {% block content %}
 <header>
-
+    
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="#"><strong>Navbar</strong></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="#"><strong>Awarded</strong></a>
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
+            
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+              
+              <a class="nav-link" href="{% url 'profile'%}">Profile</a>
             </li>
           </ul>
         </div>
@@ -49,16 +45,16 @@
         cursor: pointer;
         outline: none;
         color: #fff;
-        background-color: #4CAF50;
+        background-color: #4285F4;
         border: none;
         border-radius: 15px;
         box-shadow: 0 9px #999;
       }
       
-      .button:hover {background-color: #3e8e41}
+      .button:hover {background-color: rgb(8, 166, 206)}
       
       .button:active {
-        background-color: #3e8e41;
+        background-color: rgb(103, 157, 243);
         box-shadow: 0 5px #666;
         transform: translateY(4px);
       }

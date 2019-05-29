@@ -3,20 +3,37 @@
 
  {% block content%}
  {% include 'index.html'%}
- <div class="container">
-   <div class="row">
-      {% for img in project%}
-     <div class="col-md-6 col-lg-6">
-      <div class="card">
-       
-        <img src="{{img.img.url}}" alt="">
-        <p>{{img.description}}</p>
-       
+ 
+ <!-- Grid row -->
+<div class="row">
+    {% for img in project%}
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-12 mb-4">
+  
+      <!--Card Primary-->
+      <div class="card mdb-color text-center z-depth-2">
+        <div class="card-body">
+         <a href="{% url 'project'%}"><h5 class="text-uppercase font-weight-bold cyan-text mt-2 mb-3"><strong>{{img.name}}</strong></h5></a>
+          <img src="{{img.img.url}}" alt="" style="width: 50%; height: 50%;" href="{% url 'project'%}">
+          <p class="white-text mb-0">{{img.description}} </p>
+          <a href="{{img.link}}"><h6>{{img.link}}</h6></a>
+        </div>
       </div>
-     </div>
-     {%endfor %}
-
-   </div>
-
- </div>
+      <!--/.Card Primary-->
+  
+    </div>
+    <!-- Grid column -->
+  
+    {%endfor %}
+  </div>
+  
+ <style>
+ .card{
+   width: 350px;
+   height:350px;
+ }
+ a{
+   color: aliceblue;
+ }
+ </style>
 {% endblock %}

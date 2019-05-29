@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Profile(models.Model):
    '''
@@ -34,22 +35,29 @@ class Project(models.Model):
    description = models.TextField(max_length=140)
    img = models.ImageField(upload_to='projects/')
    link = models.CharField(max_length=140)
+   
 
 
    
    def __str__(self):
       return self.name
-      
-class Rating(models.Model):
-   '''
-   Model to hold projects' ratings
-   '''
-   review = models.CharField(max_length=140,default='')
-   design = models.IntegerField(default=0)
-   usability = models.IntegerField(default=0)
-   content = models.IntegerField(default=0)
-   rated = models.ForeignKey(Project, on_delete=models.CASCADE)
-   rated_by = models.ForeignKey(Profile, on_delete=models.CASCADE)
+class Review(models.Model):
+   rev = models.CharField(max_length = 100,blank = True)
+   design = models.IntegerField(blank = True)
+   usability = models.IntegerField(blank=True)
+   content = models.IntegerField(blank=True)
+   rev_by = models.ForeignKey(User,on_delete=models.CASCADE)
 
-   def __str__(self):
-      return self.rated.name
+def save_review(self):
+   self.save()
+
+def delete_review(self):
+   comments.objects.get(id = self.id).delete()
+
+def update_review(self,new_review):
+   rev = Review.objects.get(id = self.id)
+   rev.review= new_review
+   rev.save()
+
+
+

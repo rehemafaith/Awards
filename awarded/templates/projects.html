@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%load bootstrap4%}
+
+ {% block content%}
+ {% include 'navbar.html'%}
+<!-- Card -->
+<div class="row">
+  
+
+{% for img in project%}
+<div class="col-lg-4 col-md-12 mb-4">
+<div class="card card-image" style="background-image: url('{{img.img.url}}');">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h5 class="pink-text"><i ></i> {{img.author}}</h5>
+      <h3 class="card-title pt-2"><strong>{{img.name}}</strong></h3>
+      <p>{{img.description}}</p>
+      
+      <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+    </div>
+  </div>
+
+</div>
+</div>
+{% endfor %}
+
+</div>
+<!-- Card -->
+{% endblock %}
