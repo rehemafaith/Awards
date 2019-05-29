@@ -61,3 +61,17 @@ def full_project(request):
       form = ReviewForm
 
    return render(request, 'projects.html',{'project':project})
+
+
+class ProjectList(APIView):
+   def get(self,request,format=None):
+      all_proj = Project.objects.all()
+      serializers = ProjectSerializer(all_proj,many=True)
+      return Response(serializers.data)
+
+class ProfileList(APIView):
+   def get(self,request,format=None):
+      all_prof = Profile.objects.all()
+      seerializers = ProfileSerializer(all_prof,many=True)
+      return Response(serializers.data)
+      
