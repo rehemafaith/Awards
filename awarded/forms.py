@@ -25,7 +25,7 @@ class ReviewForm(forms.ModelForm):
    '''
    Review Form
    '''
-
+  
    class Meta:
       model = Review
       fields =['usability','design','content']
