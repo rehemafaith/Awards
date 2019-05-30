@@ -4,3 +4,4 @@ from .models import Profile,Project
 admin.site.register(Profile)
 admin.site.register(Project)
 
+  
