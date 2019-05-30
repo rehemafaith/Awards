@@ -11,3 +11,4 @@ class ProjectSerializer(serializers.ModelSerializer):
     model = Project
     fields = ('author','name','description','img','link')
 
+  
